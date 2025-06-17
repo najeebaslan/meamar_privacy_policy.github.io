@@ -3,173 +3,438 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
+        :root {
+            --primary-color: #2C5F2D;
+            --secondary-color: #97BC62;
+            --accent-color: #2C5F2D;
+            --text-color: #333333;
+            --light-bg: #F8F9FA;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
-            color: #333;
+            box-sizing: border-box;
         }
-        h1, h2 {
-            color: #2c3e50;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            line-height: 1.8;
+            color: var(--text-color);
+            background-color: var(--light-bg);
             padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .section {
-            margin-bottom: 30px;
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
         }
-        .section h2 {
-            margin-bottom: 10px;
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
         }
-        .section ul {
-            list-style-type: disc;
-            margin-left: 20px;
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
         }
-        .section ul li {
-            margin-bottom: 10px;
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+background:white;
+  padding: 0.5rem;
+            object-fit: contain;
+            margin-bottom: 1rem;
+            border-radius: 10%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .last-updated {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+        
+        .intro {
+            padding: 2rem;
+            background-color: white;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .intro p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .content-section {
+            padding: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary-color);
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: 0;
+            width: 100px;
+            height: 2px;
+            background: var(--secondary-color);
+        }
+        
+        h3 {
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem;
+        }
+        
+        ul, ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+        
+        ul li::before {
+            content: '•';
+            color: var(--secondary-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-right: 0.5em;
+        }
+        
+        ol {
+            list-style-type: none;
+            counter-reset: section;
+        }
+        
+        ol li {
+            counter-increment: section;
+        }
+        
+        ol li::before {
+            content: counter(section) ".";
+            color: var(--primary-color);
+            font-weight: bold;
+            display: inline-block;
+            width: 1.5em;
+            margin-right: 0.5em;
+        }
+        
+        .highlight-box {
+            background-color: rgba(151, 188, 98, 0.1);
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            margin: 1.5rem 0;
+        }
+        
+        .compliance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .compliance-item {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            display: flex;
+            align-items: flex-start;
+            transition: var(--transition);
+        }
+        
+        .compliance-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .compliance-item::before {
+            content: '✓';
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-left: 0.5rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .contact-card {
+            flex: 1;
+            min-width: 200px;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-top: 3px solid var(--secondary-color);
+        }
+        
+        .contact-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
         a {
-            color: #007BFF;
+            color: var(--primary-color);
             text-decoration: none;
+            transition: var(--transition);
+            font-weight: 500;
         }
+        
         a:hover {
+            color: var(--secondary-color);
             text-decoration: underline;
         }
-        .header {
+        
+        .footer {
             text-align: center;
-            padding: 20px 0;
-        }
-        .header img {
-            width: 100px;
-            height: 100px;
-            border-radius: 1%;
-        }
-        .header h1 {
-            margin: 10px 0 5px;
-        }
-        .header p {
-            margin: 0;
+            padding: 1.5rem;
+            background-color: #f5f5f5;
+            font-size: 0.9rem;
             color: #666;
         }
-        .instructions {
-            background-color: #f1f1f1;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+        
+        @media (max-width: 768px) {
+            .container {
+                border-radius: 0;
+            }
+            
+            .header {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .content-section, .intro {
+                padding: 1.5rem;
+            }
+            
+            .compliance-grid {
+                grid-template-columns: 1fr;
+            }
         }
-        .instructions img {
-            max-width: 100%;
-            border-radius: 8px;
-            margin-top: 10px;
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
+        
+        .content-section {
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        .content-section:nth-child(2) { animation-delay: 0.1s; }
+        .content-section:nth-child(3) { animation-delay: 0.2s; }
+        .content-section:nth-child(4) { animation-delay: 0.3s; }
+        /* Continue for all sections */
     </style>
-    <title>سياسة الخصوصية لـ مِعمار</title>
+    <title>سياسة الخصوصية لـ مِعمار | سوق أدوات البناء</title>
+    <meta name="description" content="سياسة الخصوصية لتطبيق مِعمار - المنصة الرائدة لتأجير وبيع أدوات البناء بين الأفراد">
 </head>
 <body>
     <div class="container">
-        <!-- Header with App Logo and Developer Name -->
-        <div class="header">
-            <img src="https://firebasestorage.googleapis.com/v0/b/meamarmanager.appspot.com/o/app_logo%2Flogo.png?alt=media&token=66cfdfdd-6b59-4978-924c-b57c43d1f1b8" alt="App Logo" width="300" height="400">
-
-
-            <h1>مِعمار</h1>
-        </div>
-
-        <!-- Privacy Policy Content -->
-        <h1>سياسة الخصوصية لـ مِعمار</h1>
-        <p><strong>تاريخ آخر تحديث: 11 مارس 2025</strong></p>
-
-        <div class="section">
-            <p>
-                تصف سياسة الخصوصية هذه سياساتنا وإجراءاتنا المتعلقة بجمع واستخدام وكشف معلوماتك عند استخدامك للخدمة، وتطلعك على حقوقك الخاصة بالخصوصية وكيف يحميك القانون.  
-            </p>
-            <p>
-                نستخدم بياناتك الشخصية لتوفير الخدمة وتحسينها. من خلال استخدام الخدمة، فإنك توافق على جمع واستخدام المعلومات وفقًا لسياسة الخصوصية هذه. تم إنشاء سياسة الخصوصية هذه بمساعدة أداة إنشاء سياسة الخصوصية.  
-            </p>
-        </div>
-
-        <div class="section">
-            <h2>1. المعلومات التي نجمعها</h2>
-            <ul>
-                <li>معلومات الحساب: الاسم، رقم الهاتف، البريد الإلكتروني، صورة الملف الشخصي.</li>
-                <li>معلومات المنتجات: تفاصيل المنتجات التي يضيفها التجار.</li>
-                <li>تفاعلات المستخدم: الإعجابات، والبحث عن المنتجات.</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>2. كيفية استخدام المعلومات</h2>
-            <ul>
-                <li>نستخدم المعلومات لتوفير خدمات التطبيق، مثل تسهيل التواصل بين العملاء والتجار.</li>
-                <li>نستخدم المعلومات لتحسين تجربة المستخدم وتقديم محتوى مخصص.</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>3. مشاركة المعلومات</h2>
-            <ul>
-                <li>لا نشارك معلوماتك الشخصية مع أطراف ثالثة دون موافقتك، إلا في الحالات التي يقتضيها القانون.</li>
-                <li>يمكن مشاركة معلومات المنتجات والمنشورات مع جميع المستخدمين.</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>4. حماية المعلومات</h2>
-            <ul>
-                <li>نستخدم تقنيات أمان متقدمة لحماية معلوماتك الشخصية.</li>
-                <li>ومع ذلك، لا يمكن ضمان أمان كامل للمعلومات المنقولة عبر الإنترنت.</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>5. حقوق المستخدم</h2>
-            <ul>
-                <li>يمكنك طلب الوصول إلى معلوماتك الشخصية أو تصحيحها أو حذفها في أي وقت.</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>6. التغييرات على سياسة الخصوصية</h2>
-            <ul>
-                <li>نحتفظ بالحق في تعديل سياسة الخصوصية في أي وقت. سيتم إعلامك بأي تغييرات جوهرية.</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>7. الاتصال بنا</h2>
-            <ul>
-                <li>لأي استفسارات حول سياسة الخصوصية، يرجى الاتصال بنا عبر:
-                    <ul>
-                        <li>البريد الإلكتروني: <a href="mailto:najeebaslan2019@gmail.com">najeebaslan2019@gmail.com</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Instructions for Deleting Account -->
-        <div class="instructions">
-            <h2>كيفية حذف حسابك وبياناتك</h2>
-
-            <p>
-                إذا كنت ترغب في حذف حسابك والبيانات المرتبطة به، يرجى اتباع الخطوات التالية:
-            </p>
-            <ol>
-                <li>قم بتسجيل الدخول إلى حسابك في تطبيق مِعمار.</li>
-                <li>انتقل إلى إعدادات الحساب.</li>
-                <li>اختر "حذف الحساب".</li>
-                <li>اتبع التعليمات الظاهرة على الشاشة.</li>
-            </ol>
-           
+        <!-- Header Section -->
+        <header class="header">
+            <img src="https://firebasestorage.googleapis.com/v0/b/meamarmanager.appspot.com/o/app_logo%2Flogo.png?alt=media&token=66cfdfdd-6b59-4978-924c-b57c43d1f1b8" alt="شعار مِعمار" class="logo">
+            <h1>سياسة الخصوصية</h1>
+            <div class="last-updated">آخر تحديث: 11 مارس 2025</div>
+        </header>
+        
+        <!-- Introduction -->
+        <section class="intro">
+            <p>مرحبًا بك في سياسة الخصوصية لتطبيق <strong>مِعمار</strong>. نقدّر ثقتك بنا ونلتزم بحماية معلوماتك الشخصية. توضح هذه السياسة كيفية جمعنا واستخدامنا وحماية بياناتك عند استخدامك لتطبيقنا.</p>
+            <p>باستخدامك تطبيق مِعمار، فإنك توافق على ممارسات الخصوصية الموضحة أدناه. ننصحك بقراءة هذه السياسة بعناية لفهم حقوقك ومسؤولياتك.</p>
+        </section>
+        
+        <!-- App Overview -->
+        <section class="content-section">
+            <h2>نظرة عامة على التطبيق</h2>
+            <p>مِعمار هو تطبيق رائد في مجال تأجير وبيع أدوات البناء، يعمل كنقطة وصل بين مالكي الأدوات (المديرين) والأفراد الذين يحتاجون إلى هذه الأدوات. نقدم منصة آمنة وسهلة الاستخدام للتواصل وإتمام الصفقات خارج التطبيق.</p>
             
-        </div>
+            <div class="highlight-box">
+                <h3>الميزات الرئيسية</h3>
+                <ul>
+                    <li>نظام ثنائي الأدوار (مديرين وعملاء)</li>
+                    <li>إدراج أدوات البناء مع صور وتفاصيل كاملة</li>
+                    <li>نظام دردشة آمن للتواصل بين الأطراف</li>
+                    <li>بحث متقدم وتصفية للنتائج</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Data Collection -->
+        <section class="content-section">
+            <h2>جمع واستخدام البيانات</h2>
+            
+            <h3>المعلومات التي نجمعها</h3>
+            <ul>
+                <li><strong>معلومات الحساب:</strong> الاسم، رقم الهاتف، البريد الإلكتروني، صورة الملف الشخصي</li>
+                <li><strong>معلومات الأدوات:</strong> المواصفات، الصور، السعر، الموقع</li>
+                <li><strong>بيانات التفاعل:</strong> عمليات البحث، الإعجابات، سجل الدردشات</li>
+            </ul>
+            
+            <h3>كيف نستخدم معلوماتك</h3>
+            <ol>
+                <li>توفير الخدمات الأساسية للتطبيق</li>
+                <li>تحسين تجربة المستخدم وتخصيص المحتوى</li>
+                <li>ضمان أمان الحسابات ومنع الاحتيال</li>
+                <li>تحليل استخدام التطبيق لأغراض التطوير</li>
+            </ol>
+        </section>
+        
+        <!-- Permissions -->
+        <section class="content-section">
+            <h2>أذونات التطبيق</h2>
+            
+            <div class="highlight-box">
+                <h3>الوصول إلى الصور</h3>
+                <p>نطلب هذا الإذن لتمكينك من:</p>
+                <ul>
+                    <li>تحميل صورة للملف الشخصي</li>
+                    <li>إضافة صور للأدوات المعروضة</li>
+                </ul>
+                <p><em>يمكنك دائمًا رفض هذا الإذن أو إلغاؤه لاحقًا من إعدادات جهازك.</em></p>
+            </div>
+            
+            <div class="highlight-box">
+                <h3>الإشعارات</h3>
+                <p>نستخدم الإشعارات لإعلامك بـ:</p>
+                <ul>
+                    <li>الرسائل الجديدة</li>
+                    <li>تحديثات الصفقات</li>
+                    <li>أنشطة الحساب المهمة</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Data Protection -->
+        <section class="content-section">
+            <h2>حماية البيانات</h2>
+            <p>نحن نستخدم أحدث تقنيات الحماية لحماية معلوماتك:</p>
+            
+            <ul>
+                <li>تشفير البيانات أثناء النقل والتخزين</li>
+                <li>أنظمة مراقبة للكشف عن الأنشطة المشبوهة</li>
+                <li>وصول محدود للموظفين المصرح لهم فقط</li>
+                <li>مراجعات أمنية دورية</li>
+            </ul>
+            
+            <h3>حقوقك في البيانات</h3>
+            <p>لديك الحق في:</p>
+            <ol>
+                <li>الوصول إلى بياناتك الشخصية</li>
+                <li>طلب تصحيح الأخطاء</li>
+                <li>حذف حسابك وبياناتك</li>
+                <li>تقييد معالجة بياناتك</li>
+            </ol>
+        </section>
+        
+        <!-- Compliance -->
+        <section class="content-section">
+            <h2>الامتثال للمعايير</h2>
+            <p>يتوافق تطبيق مِعمار تمامًا مع إرشادات متجر التطبيقات ومعايير حماية البيانات الدولية.</p>
+            
+            <h3>قائمة التحقق من الامتثال</h3>
+            <div class="compliance-grid">
+                <div class="compliance-item">وضوح الغرض من التطبيق</div>
+                <div class="compliance-item">شفافية جمع البيانات</div>
+                <div class="compliance-item">عدم مشاركة البيانات مع أطراف ثالثة</div>
+                <div class="compliance-item">عدم وجود مشتريات داخل التطبيق</div>
+                <div class="compliance-item">نظام مراقبة المحتوى</div>
+                <div class="compliance-item">حماية بيانات المستخدمين</div>
+                <div class="compliance-item">قنوات دعم واضحة</div>
+                <div class="compliance-item">إمكانية حذف الحساب</div>
+            </div>
+        </section>
+        
+        <!-- Contact -->
+        <section class="content-section">
+            <h2>تواصل معنا</h2>
+            <p>لأي استفسارات حول سياسة الخصوصية أو لطلب حذف بياناتك:</p>
+            
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h4>الدعم الفني</h4>
+                    <p>البريد الإلكتروني: <a href="mailto:najeebaslan2019@gmail.com">najeebaslan2019@gmail.com</a></p>
+                    <p>الهاتف: <a href="tel:+967773228315">+967773228315</a></p>
+                </div>
+                
+                <div class="contact-card">
+                    <h4>فريق المراجعة</h4>
+                    <p>البريد الإلكتروني: <a href="mailto:najeebaslan2019@gmail.com">najeebaslan2019@gmail.com</a></p>
+                    <p>وقت الاستجابة: خلال 24 ساعة</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Account Deletion -->
+        <section class="content-section" style="background-color: #FFF9F2; border-left: 4px solid #FFA726;">
+            <h2>كيفية حذف حسابك</h2>
+            <p>يمكنك حذف حسابك وبياناتك الشخصية بسهولة:</p>
+            
+            <ol>
+                <li>افتح التطبيق وسجل الدخول إلى حسابك</li>
+                <li>انتقل إلى قسم "الإعدادات"</li>
+                <li>اختر "إدارة الحساب"</li>
+                <li>اضغط على "حذف الحساب"</li>
+                <li>اتبع التعليمات الظاهرة</li>
+            </ol>
+            
+            <p><strong>ملاحظة:</strong> قد تستغرق عملية الحذف الكامل حتى 72 ساعة من أنظمتنا الاحتياطية.</p>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2025 مِعمار. جميع الحقوق محفوظة.</p>
+            <p>آخر تحديث: 11 مارس 2025</p>
+        </footer>
     </div>
 </body>
 </html>
